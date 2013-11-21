@@ -26,22 +26,22 @@ func main() {
 
 	var (
 		flVersion            = flag.Bool("v", false, "Print version information and quit")
-		flDaemon             = flag.Bool("d", false, "Daemon mode")
-		flDebug              = flag.Bool("D", false, "Debug mode")
+		flDaemon             = flag.Bool("d", false, "Enable daemon mode")
+		flDebug              = flag.Bool("D", false, "Enable debug mode")
 		flAutoRestart        = flag.Bool("r", true, "Restart previously running containers")
-		bridgeName           = flag.String("b", "", "Attach containers to a pre-existing network bridge. Use 'none' to disable container networking")
-		pidfile              = flag.String("p", "/var/run/docker.pid", "File containing process PID")
-		flRoot               = flag.String("g", "/var/lib/docker", "Path to use as the root of the docker runtime.")
-		flEnableCors         = flag.Bool("api-enable-cors", false, "Enable CORS requests in the remote api.")
-		flDns                = flag.String("dns", "", "Set custom dns servers")
-		flEnableIptables     = flag.Bool("iptables", true, "Disable iptables within docker")
-		flDefaultIp          = flag.String("ip", "0.0.0.0", "Default ip address to use when binding a containers ports")
+		bridgeName           = flag.String("b", "", "Attach containers to a pre-existing network bridge; use 'none' to disable container networking")
+		pidfile              = flag.String("p", "/var/run/docker.pid", "Path to use for daemon PID file")
+		flRoot               = flag.String("g", "/var/lib/docker", "Path to use as the root of the docker runtime")
+		flEnableCors         = flag.Bool("api-enable-cors", false, "Enable CORS headers in the remote API")
+		flDns                = flag.String("dns", "", "Force docker to use specific DNS servers")
+		flEnableIptables     = flag.Bool("iptables", true, "Disable docker's addition of iptables rules")
+		flDefaultIp          = flag.String("ip", "0.0.0.0", "Default IP address to use when binding container ports")
 		flInterContainerComm = flag.Bool("icc", true, "Enable inter-container communication")
 
 		flHosts = docker.NewListOpts(docker.ValidateHost)
 	)
 
-	flag.Var(&flHosts, "H", "tcp://host:port to bind/connect to or unix://path/to/socket to use")
+	flag.Var(&flHosts, "H", "Multiple tcp://host:port or unix://path/to/socket to bind in daemon mode, single connection otherwise")
 
 	flag.Parse()
 
