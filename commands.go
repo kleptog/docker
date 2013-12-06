@@ -1719,6 +1719,7 @@ func parseRun(cmd *flag.FlagSet, args []string, capabilities *Capabilities) (*Co
 		flContainerIDFile = cmd.String("cidfile", "", "Write the container ID to the file")
 		flEntrypoint      = cmd.String("entrypoint", "", "Overwrite the default entrypoint of the image")
 		flHostname        = cmd.String("h", "", "Container host name")
+		flIp              = cmd.String("ip", "", "Container IP address")
 		flMemoryString    = cmd.String("m", "", "Memory limit (format: <number><optional unit>, where unit = b, k, m or g)")
 		flUser            = cmd.String("u", "", "Username or UID")
 		flWorkingDir      = cmd.String("w", "", "Working directory inside the container")
@@ -1850,6 +1851,7 @@ func parseRun(cmd *flag.FlagSet, args []string, capabilities *Capabilities) (*Co
 		Tty:             *flTty,
 		NetworkDisabled: !*flNetwork,
 		OpenStdin:       *flStdin,
+		Ip:              flIp,
 		Memory:          flMemory,
 		CpuShares:       *flCpuShares,
 		AttachStdin:     flAttach.Get("stdin"),

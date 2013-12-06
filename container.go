@@ -81,6 +81,7 @@ type Config struct {
 	Hostname        string
 	Domainname      string
 	User            string
+	Ip              string
 	Memory          int64 // Memory limit (in bytes)
 	MemorySwap      int64 // Total memory usage (memory + swap); set `-1' to disable swap
 	CpuShares       int64 // CPU shares (relative weight vs. other containers)

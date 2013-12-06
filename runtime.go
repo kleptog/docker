@@ -473,7 +473,7 @@ func (runtime *Runtime) Create(config *Config, name string) (*Container, []strin
 		Config:          config,
 		hostConfig:      &HostConfig{},
 		Image:           img.ID, // Always use the resolved image id
-		NetworkSettings: &NetworkSettings{},
+		NetworkSettings: &NetworkSettings{IPAddress: config.Ip},
 		// FIXME: do we need to store this in the container?
 		SysInitPath: runtime.sysInitPath,
 		Name:        name,
